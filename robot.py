@@ -217,13 +217,19 @@ class MyRobot(wpilib.TimedRobot):
     def autonomousInit(self):
         if not self.auton:
             return
+        self.autonTimer = wpilib.Timer()
+        self.autonTimer.start()
 
 
     def autonomousPeriodic(self):
         if not self.auton:
             return
+        #moves at 0.5 for 1 second
+        if self.autonTimer.get() < 1.0:
+            self.drive.move(0, 0.5, 0)
 
-        self.autonForwardAndBack()
+
+        #self.autonForwardAndBack()
 
 
     def autonForwardAndBack(self):
