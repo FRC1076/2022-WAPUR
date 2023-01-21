@@ -112,13 +112,13 @@ hooksConfig = {
     'RIGHT_HOOK_ID': 8,
 
     'FRONT_TOP_PORT': 0,
-    'FRONT_BOTTOM_PORT': 1,
-    'BACK_TOP_PORT': 2,
-    'BACK_BOTTOM_PORT': 3,
-    'LEFT_TOP_PORT': 4,
-    'LEFT_BOTTOM_PORT': 5,
-    'RIGHT_TOP_PORT': 6,
-    'RIGHT_BOTTOM_PORT': 7
+    'FRONT_BOTTOM_PORT': 0,
+    'BACK_TOP_PORT': 0,
+    'BACK_BOTTOM_PORT': 0,
+    'LEFT_TOP_PORT': 0,
+    'LEFT_BOTTOM_PORT': 0,
+    'RIGHT_TOP_PORT': 0,
+    'RIGHT_BOTTOM_PORT': 0
 }
 
 #######################

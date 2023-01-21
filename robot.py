@@ -61,8 +61,8 @@ class MyRobot(wpilib.TimedRobot):
                 self.feeder = self.initFeeder(config)
             if key == 'AUTON':
                 self.auton = self.initAuton(config)
-            if key == 'HOOKS':
-                self.hooks = self.initHooks(config)
+            #if key == 'HOOKS':
+                #self.hooks = self.initHooks(config)
 
         self.dashboard = NetworkTables.getTable('SmartDashboard')
         self.periods = 0
@@ -71,6 +71,8 @@ class MyRobot(wpilib.TimedRobot):
             self.tester = Tester(self)
             self.tester.initTestTeleop()
             self.tester.testCodePaths()
+        
+        self.ultrasonic_sensor = wpilib.Ultrasonic(9, 8)
             
 
     def initControllers(self, config):
@@ -165,12 +167,15 @@ class MyRobot(wpilib.TimedRobot):
 
     def teleopInit(self):
         print("teleopInit ran")
+        self.ultrasonic_sensor.ping()
+        self.ping = True
         return True
 
 
     def teleopPeriodic(self):
         self.teleopDrivetrain()
-        self.teleopHooks()
+        #self.teleopHooks()
+        self.teleopUltrasonic()
         return True
 
     def move(self, x, y, rcw):
@@ -267,6 +272,13 @@ class MyRobot(wpilib.TimedRobot):
 
         self.hooks.update()
 
+    def teleopUltrasonic(self):
+        if self.ultrasonic_sensor.isRangeValid() and self.ping == True:
+            print(self.ultrasonic_sensor.getRange())
+            self.ping = False
+        elif self.ping == False:
+            self.ultrasonic_sensor.ping()
+            self.ping = True
 
     def autonomousInit(self):
         if not self.auton:
